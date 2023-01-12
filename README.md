@@ -117,10 +117,7 @@ book/change reservation as per their customer request.
 
 You would want to keep all the relevant data in one object based on the highly frequent access patterns to write and read data.
 
-<img src="./images/CosmosDB_MultiTenant_Hotel_Business_Data_Model.jpg" alt="Cosmos DB Document Model diagram" width="800">
-
-As per the above diagram, it make sense to keep all the business entity information such as customers and room types 
-along with tenant related data such as room inventory, availability and reservations in one Cosmos DB Container. 
+<!--<img src="./images/CosmosDB_MultiTenant_Hotel_Business_Data_Model.jpg" alt="Cosmos DB Document Model diagram" width="800"> ---> 
 
 This challenge demonstrate how software object model transform to NoSQL database design model which completely different from SQL based
 databases. **Cosmos DB Data Model requires a different mindset and also requires the knowledge of highly frequent access patterns.**

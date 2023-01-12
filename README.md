@@ -136,7 +136,7 @@ We have developed an Azure Deployment script to provision the required Azure Ser
 
 2.2 Enter the following Workshop github link in the browser.
 ```
-	https://github.com/microsoft/CosmosDB_Multi-Tenant
+	https://github.com/pratimav0420/CosmosDB_Multi-Tenant
 ```
 
 2.3 Click **Challenge-1** from Workshop Challenge List. 

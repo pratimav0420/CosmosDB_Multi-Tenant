@@ -54,8 +54,8 @@ All the above use cases need a new mindset and special features. This workshop w
 
 
 ## Workshop Challenge List
-- [Challenge-1: Model data to build SaaS applications](#Challenge-2-Model-data-to-build-SaaS-applications)
-- [Challenge-2: Deploy Azure Cosmos DB Service](#challenge-1-Deploy-Azure-Cosmos-DB-Service)
+- [Challenge-1: Model data to build SaaS applications](#Challenge-1-Model-data-to-build-SaaS-applications)
+- [Challenge-2: Deploy Azure Cosmos DB Service](#Challenge-2-Deploy-Azure-Cosmos-DB-Service)
 - [Challenge-3: Design Cosmos DB Account to serve small, medium and large customers](#Challenge-3-Design-Cosmos-DB-Account-to-serve-small-medium-and-large-customers)
 - [Challenge-4: Validate Cosmos DB features Auto Failover, Autoscale and Low Latency](#Challenge-4-Validate-Cosmos-DB-features-Auto-failover-Autoscale-and-Low-latency)
 - [Challenge-5: Build an application using Cosmos DB Emulator at no cost](#Challenge-5-Build-an-application-using-Azure-Cosmos-DB-at-no-cost)

@@ -54,8 +54,8 @@ All the above use cases need a new mindset and special features. This workshop w
 
 
 ## Workshop Challenge List
-- [Challenge-1: Deploy Azure Cosmos DB Service](#challenge-1-Deploy-Azure-Cosmos-DB-Service)
-- [Challenge-2: Model data to build SaaS applications](#Challenge-2-Model-data-to-build-SaaS-applications)
+- [Challenge-1: Model data to build SaaS applications](#Challenge-2-Model-data-to-build-SaaS-applications)
+- [Challenge-2: Deploy Azure Cosmos DB Service](#challenge-1-Deploy-Azure-Cosmos-DB-Service)
 - [Challenge-3: Design Cosmos DB Account to serve small, medium and large customers](#Challenge-3-Design-Cosmos-DB-Account-to-serve-small-medium-and-large-customers)
 - [Challenge-4: Validate Cosmos DB features Auto Failover, Autoscale and Low Latency](#Challenge-4-Validate-Cosmos-DB-features-Auto-failover-Autoscale-and-Low-latency)
 - [Challenge-5: Build an application using Cosmos DB Emulator at no cost](#Challenge-5-Build-an-application-using-Azure-Cosmos-DB-at-no-cost)
@@ -92,60 +92,7 @@ customers using this use case.
 <img src="./images/Multi-Tenant_Cosmos_DB_Workshop_Architecture.jpg" alt="Architecture for Azure Cosmos DB Lab" Width="600"> 
 
 
-
-## Challenge-1: Deploy Azure Cosmos DB Service 
-
-We have developed an Azure Deployment script to provision the required Azure Services used in the above architecture diagram.
-
-1.1 Open a new InPrivate window from your Microsoft Edge browser. 
-
-<img src="./images/Browser_in_private_Marked.jpg" alt="Edge Browser InPrivate Window selection" width="400">
-
-1.2 Enter the following Workshop github link in the browser.
-```
-	https://github.com/microsoft/CosmosDB_Multi-Tenant
-```
-
-1.3 Click **Challenge-1** from Workshop Challenge List. 
-
-1.4 Click the "Deploy to Azure" button
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FCosmosDB_Multi-Tenant%2Fmain%2Fazuredeploy.json)
-
-1.5 Enter your Workshop **login Id and Password** provided by the instructor.
-
-1.6 You will see **Welcome to SDP Innovation!** screen. Select **Yes**.
-
-1.7. Enter the following options in the custom deployment screen.
-	
-* Select your allocated resource group from the dropdown.
-
-* Select your region from the dropdown list for **Cosmos DB Location** selection. 
-
-Best practice is to keep resource group and Cosmos DB account in the same region. We had to set the resource group
-"West US" to automate the deployment script. Don't follow this practice in your environment.
-
-1.8 Click on "Review+create" button.
-
-<img src="./images/CosmosDB_AzureDeploymentOptions_Marked.jpg" alt="Azure Custom Depolyment Screen" Width="600">
-
-1.9 It completes the validation as the next step and click on 'create' button.
-
-It will provision Azure Cosmos DB account in your subscription:
-
-It may take 2 to 5 minutes to create the services.
-
-1.10 Click on "Go to resource group" when the deployment is complete.
-
-<img src="./images/CosmosDB_AzureDeployment_Complete_Marked.jpg" alt="Deployment complete" Width="600">
-
-It will take you to your resource group showing the installed Azure Cosmos DB services.
-
-<img src="./images/CosmosDB_AzureDeployment_ResourceGroup_Marked.jpg" alt="Resource Group with Services list" Width="600">
-
-You have successfully deployed the required services to Azure. Congratulations for completing your first challenge.
-
-## Challenge-2: Model data to build SaaS applications
+## Challenge-1: Model data to build SaaS applications
 Let us review the object model for this application and plan the data model for SaaS application.
 
 ### Multi-Tenant Reservation System Object Model
@@ -180,6 +127,61 @@ databases. **Cosmos DB Data Model requires a different mindset and also requires
 
 Apply the same methodology to migrate your legacy applications or to build new green field applications. **You have successfully 
 completed challenge 2 by creating a Cosmos DB data model based on highly frequent access patterns!!**
+
+
+## Challenge-2: Deploy Azure Cosmos DB Service 
+
+We have developed an Azure Deployment script to provision the required Azure Services used in the above architecture diagram.
+
+2.1 Open a new InPrivate window from your Microsoft Edge browser. 
+
+<img src="./images/Browser_in_private_Marked.jpg" alt="Edge Browser InPrivate Window selection" width="400">
+
+2.2 Enter the following Workshop github link in the browser.
+```
+	https://github.com/microsoft/CosmosDB_Multi-Tenant
+```
+
+2.3 Click **Challenge-1** from Workshop Challenge List. 
+
+2.4 Click the "Deploy to Azure" button
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmicrosoft%2FCosmosDB_Multi-Tenant%2Fmain%2Fazuredeploy.json)
+
+2.5 Enter your Workshop **login Id and Password** provided by the instructor.
+
+2.6 You will see **Welcome to SDP Innovation!** screen. Select **Yes**.
+
+2.7. Enter the following options in the custom deployment screen.
+	
+* Select your allocated resource group from the dropdown.
+
+* Select your region from the dropdown list for **Cosmos DB Location** selection. 
+
+Best practice is to keep resource group and Cosmos DB account in the same region. We had to set the resource group
+"West US" to automate the deployment script. Don't follow this practice in your environment.
+
+2.8 Click on "Review+create" button.
+
+<img src="./images/CosmosDB_AzureDeploymentOptions_Marked.jpg" alt="Azure Custom Depolyment Screen" Width="600">
+
+2.9 It completes the validation as the next step and click on 'create' button.
+
+It will provision Azure Cosmos DB account in your subscription:
+
+It may take 2 to 5 minutes to create the services.
+
+2.10 Click on "Go to resource group" when the deployment is complete.
+
+<img src="./images/CosmosDB_AzureDeployment_Complete_Marked.jpg" alt="Deployment complete" Width="600">
+
+It will take you to your resource group showing the installed Azure Cosmos DB services.
+
+<img src="./images/CosmosDB_AzureDeployment_ResourceGroup_Marked.jpg" alt="Resource Group with Services list" Width="600">
+
+You have successfully deployed the required services to Azure. Congratulations for completing your first challenge.
+
+
 
 ## Challenge-3: Design Cosmos DB Account to serve small, medium and large customers
 

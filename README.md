@@ -323,8 +323,21 @@ You can query data using APIs and also can use Data Explorer for quick check.
 * Select 'Execute Selection' from the top bar to execute the query
 * Results tab will be display the results on the bottom.
 * Query Stats next to results tab will show RU cost, size of the document and Query Execution time.
+The above query will result in a cross partition query 
+Next try the query below
+
+``` SELECT count(1) FROM c where c.type='Reservation' and c.tenantId=1001  ```
+
+In the Query Stats next to results tab will you will notice that RU usage is significantly lower than the query above.
+
+CosmosDB supports built in functions and JSON projection within the queries, Lets project a new JSON object using the query below
+
+```    select { "Customer Name":CONCAT(c.cust.firstName," ",c.cust.lastName), "Room Rate": c.roomRate} as customerrate from c where c.type='Reservation' and  c.tenantId=1001 order by c.roomRate desc  ```
+
 
 <img src="./images/cosmosdb-query-execution-3d.jpg" alt="Query data using Data Explorer" width="600" >
+
+#### 3.6 Using indexes in ComsosDB
 
 With this challenge you have gained a hands-on experience to create multi-tenant Cosmos DB database to support small, medium 
 and large customers. Congratulations!!

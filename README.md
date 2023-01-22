@@ -323,6 +323,8 @@ You can query data using APIs and also can use Data Explorer for quick check.
 * Select 'Execute Selection' from the top bar to execute the query
 * Results tab will be display the results on the bottom.
 * Query Stats next to results tab will show RU cost, size of the document and Query Execution time.
+<img src="./images/cosmosdb-query-execution-3d.jpg" alt="Query data using Data Explorer" width="600" >
+
 The above query will result in a cross partition query 
 Next try the query below
 
@@ -335,9 +337,68 @@ CosmosDB supports built in functions and JSON projection within the queries, Let
 ```    select { "Customer Name":CONCAT(c.cust.firstName," ",c.cust.lastName), "Room Rate": c.roomRate} as customerrate from c where c.type='Reservation' and  c.tenantId=1001 order by c.roomRate desc  ```
 
 
-<img src="./images/cosmosdb-query-execution-3d.jpg" alt="Query data using Data Explorer" width="600" >
-
 #### 3.6 Using indexes in ComsosDB
+
+CosmosDB uses Indexes to further accelerate query response times. Each time an Item is stored in a container, CosmosDb indexes all properties by default. Users can manage indexes to effectively index only those properties that are helpful for their query scenarios. This can lead to optmized RU consumption. CosmosDB allows properties to be referenced by their paths. 
+Start with clicking on the "Scale & Settings" link and then the "Indexing Policy" as shown below:
+
+<img src="./images/cosmosdb-default-indexes.jpg" alt="Modify index policy using Data Explorer" width="600" >
+
+By default you will notice that all properties are indexed and only the etag is excluded
+
+```yaml
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/_etag/?"
+        }
+    ]
+}
+```
+
+You can overwrite the default index policy to customize it for any range, composite or particular filters that your queries would need. Copy the below index policy and replace the default and Save.
+
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/bizId/"
+        },
+         {
+            "path": "/type/"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "compositeIndexes": [
+    [
+      {
+        "path": "/bookedDate",
+        "order": "ascending"
+      },
+      {
+        "path": "/roomRate",
+        "order": "descending"
+      }
+    ]
+    ]
+}
+```
+The query below will not use the customized Index policy
+
+```    select { "Customer Name":CONCAT(c.cust.firstName," ",c.cust.lastName), "Room Rate": c.roomRate} as customerrate from c where c.type='Reservation' and  c.tenantId=1001 order by c.roomRate desc  ```
 
 With this challenge you have gained a hands-on experience to create multi-tenant Cosmos DB database to support small, medium 
 and large customers. Congratulations!!

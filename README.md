@@ -2,13 +2,28 @@
 
 # Azure Cosmos DB for Multitenant Applications Workshop
 
+**🆕 Updated for 2025 with cutting-edge AI features!**
+
+This workshop now includes the latest Azure Cosmos DB enhancements that position it as the **database for the AI era**:
+- **Vector Database Integration** - Store and search vector embeddings alongside operational data
+- **Query Copilot (Preview)** - Generate NoSQL queries using natural language prompts  
+- **Integrated Cache** - In-memory caching with dedicated gateway for cost optimization
+- **AI Advantage Program** - Up to $6,000 in free credits for Azure AI customers
+
 ## Azure Cosmos DB Introduction
 
-Azure Cosmos DB is a fully managed NoSQL database for modern multitenant application development. You can build applications 
+Azure Cosmos DB is a fully managed NoSQL database for modern multitenant application development and **the AI era**. You can build applications 
 fast with open source APIs, multiple SDKs, schemaless data and no-ETL analytics over operational data.
 Single-digit millisecond response times, and instant scalability, guarantee speed at any scale.
 Guarantee business continuity, 99.999% availability and enterprise-grade security for every application.
 End-to-end database management, with serverless and automatic scaling matching your application and TCO needs. 
+
+**NEW AI-Enhanced Features for 2024/2025:**
+- **Integrated Vector Database**: Store vector embeddings alongside your operational data for AI applications
+- **Query Copilot (Preview)**: Generate NoSQL queries using natural language prompts powered by AI
+- **Integrated Cache**: In-memory caching with dedicated gateway for improved performance and cost optimization
+- **AI Advantage Program**: 40,000 RU/s of throughput for 90 days (up to $6,000 value) for Azure AI customers
+
 Supports multiple database APIs including native API for NoSQL, API for Mongo DB, Apache Cassandra, Apache Gremlin and Table.
 It also started supporting PostgreSQL extended with the Citus Open Source which is useful for highly scalable relational apps.
 
@@ -59,6 +74,7 @@ All the above use cases need a new mindset and special features. This workshop w
 - [Challenge-3: Design Cosmos DB Account to serve small, medium and large customers](#Challenge-3-Design-Cosmos-DB-Account-to-serve-small-medium-and-large-customers)
 - [Challenge-4: Validate Cosmos DB features Auto Failover, Autoscale and Low Latency](#Challenge-4-Validate-Cosmos-DB-features-Auto-failover-Autoscale-and-Low-latency)
 - [Challenge-5: Build an application using Cosmos DB Emulator at no cost](#Challenge-5-Build-an-application-using-Azure-Cosmos-DB-at-no-cost)
+- **[Challenge-6: NEW - Implement AI-Enhanced Features (Vector Search, Query Copilot, Integrated Cache)](#Challenge-6-Implement-AI-Enhanced-Features)**
 
 ## Multi-Tenancy features for Software Companies 
 
@@ -608,6 +624,196 @@ enterprise customers. Also gave an experience to build applications using Cosmos
 environment with no cost. 
 
 Please send your feedback and suggestions to us!!
+
+## Challenge-6: Implement AI-Enhanced Features
+
+Azure Cosmos DB has evolved to become the **database for the AI era**, offering cutting-edge capabilities that integrate artificial intelligence directly into your database operations. This challenge will guide you through implementing the latest AI-enhanced features.
+
+### 6.1 Vector Database Integration for AI Applications
+
+Azure Cosmos DB for NoSQL now includes native vector database capabilities, allowing you to store vector embeddings alongside your operational data for AI-powered applications like recommendation engines, similarity search, and Retrieval Augmented Generation (RAG).
+
+#### 6.1.1 Enable Vector Search in Your Container
+
+1. Navigate to your **SharedThroughputDB** database in Data Explorer
+2. Select **CasinoHotel** container
+3. Select **Scale & Settings**
+4. In the **Indexing Policy** section, add vector indexing configuration:
+
+```json
+{
+    "indexingMode": "consistent",
+    "automatic": true,
+    "includedPaths": [
+        {
+            "path": "/*"
+        }
+    ],
+    "excludedPaths": [
+        {
+            "path": "/_etag/?"
+        }
+    ],
+    "vectorIndexes": [
+        {
+            "path": "/vectorProperty",
+            "type": "diskANN"
+        }
+    ]
+}
+```
+
+#### 6.1.2 Add Sample Vector Data
+
+Create a new document with vector embeddings in your container:
+
+```json
+{
+    "id": "vector-search-sample",
+    "tenantId": 1001,
+    "type": "AIRecommendation",
+    "description": "Luxury suite recommendation based on customer preferences",
+    "vectorProperty": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8],
+    "metadata": {
+        "roomType": "Suite",
+        "amenities": ["spa", "ocean-view", "balcony"],
+        "priceRange": "premium"
+    }
+}
+```
+
+#### 6.1.3 Perform Vector Similarity Search
+
+Use the new `VectorDistance` function to find similar items:
+
+```sql
+SELECT c.id, c.description, VectorDistance(c.vectorProperty, [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]) AS similarity
+FROM c
+WHERE c.type = 'AIRecommendation' 
+ORDER BY VectorDistance(c.vectorProperty, [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8])
+```
+
+### 6.2 Query Copilot - Natural Language to NoSQL
+
+Microsoft Copilot for Azure in Cosmos DB (Preview) allows you to generate NoSQL queries using natural language prompts.
+
+#### 6.2.1 Enable Query Copilot
+
+1. Ensure your Azure subscription is enrolled in the **Microsoft Copilot for Azure in Cosmos DB preview**
+2. Navigate to **Data Explorer** in your Cosmos DB account
+3. Look for the **Query faster with Copilot** card
+4. Click **Enable Copilot** button in the Data Explorer menu
+
+#### 6.2.2 Try Natural Language Queries
+
+Test these natural language prompts in the Copilot interface:
+
+- "Show me all hotel reservations for tenant 1001"
+- "Find rooms with rates above $200 per night"
+- "Count reservations by room type"
+- "Show available rooms for luxury hotels between specific dates"
+
+#### 6.2.3 Review Generated Queries
+
+Copilot will generate NoSQL queries and provide explanations. For example:
+- **Prompt**: "Show me all luxury suite reservations"
+- **Generated Query**: 
+```sql
+SELECT * FROM c 
+WHERE c.type = 'Reservation' 
+AND CONTAINS(UPPER(c.roomType), 'SUITE')
+```
+
+### 6.3 Integrated Cache Implementation
+
+The integrated cache provides in-memory caching to reduce costs for read-heavy workloads while maintaining low latency.
+
+#### 6.3.1 Provision Dedicated Gateway
+
+1. In your Cosmos DB account, navigate to **Settings** > **Dedicated Gateway**
+2. Click **Create dedicated gateway**
+3. Configure:
+   - **SKU**: D4s (4 vCores, 16 GB RAM) - for production workloads
+   - **Instance count**: 1 (can scale up based on needs)
+4. Click **Create**
+
+#### 6.3.2 Configure Integrated Cache Settings
+
+1. After deployment, copy the **Dedicated Gateway Connection String**
+2. Update your application connection to use the dedicated gateway
+3. Configure `MaxIntegratedCacheStaleness` in your requests:
+
+```csharp
+// C# SDK Example
+var requestOptions = new ItemRequestOptions
+{
+    ConsistencyLevel = ConsistencyLevel.Session,
+    // Cache data for up to 30 seconds
+    MaxIntegratedCacheStaleness = TimeSpan.FromSeconds(30)
+};
+
+var response = await container.ReadItemAsync<dynamic>("item-id", 
+    new PartitionKey("partition-value"), requestOptions);
+```
+
+#### 6.3.3 Monitor Cache Performance
+
+Track cache efficiency using Azure Monitor metrics:
+- **IntegratedCacheItemHitRate**: Percentage of point reads served from cache
+- **IntegratedCacheQueryHitRate**: Percentage of queries served from cache
+- **DedicatedGatewayRequests**: Total requests through dedicated gateway
+
+### 6.4 AI Advantage Program Benefits
+
+Take advantage of Azure AI benefits:
+
+1. **Free Tier**: 1000 RU/s and 25 GB storage permanently free
+2. **Azure AI Advantage**: 40,000 RU/s for 90 days (up to $6,000 value) for Azure AI customers
+3. **30-day Free Trial**: No Azure subscription required
+
+#### 6.4.1 Apply for Azure AI Advantage
+
+1. Visit [Azure AI Advantage](https://learn.microsoft.com/en-us/azure/cosmos-db/ai-advantage)
+2. Verify eligibility (Azure AI or GitHub Copilot customers)
+3. Apply the credits to your Cosmos DB account
+
+### 6.5 Build a Simple RAG (Retrieval Augmented Generation) Pattern
+
+Implement a basic RAG pattern using the new features:
+
+1. **Store embeddings** alongside hotel data in Cosmos DB
+2. **Use vector search** to find relevant hotel information
+3. **Apply integrated cache** for frequently accessed embeddings
+4. **Use Query Copilot** to explore data with natural language
+
+#### 6.5.1 Sample RAG Implementation Steps
+
+1. Create embeddings for hotel descriptions using Azure OpenAI
+2. Store embeddings in Cosmos DB with vector indexing
+3. Implement similarity search for recommendations
+4. Cache frequently accessed results using integrated cache
+5. Use Query Copilot for dynamic data exploration
+
+### 6.6 Cost Optimization with New Features
+
+**Integrated Cache Benefits:**
+- Zero RU consumption for cache hits
+- Reduced costs for read-heavy workloads
+- Automatic cache invalidation and LRU eviction
+
+**Vector Search Benefits:**
+- Single database for operational and AI data
+- No need for separate vector databases
+- Reduced data movement and consistency issues
+
+**Query Copilot Benefits:**
+- Faster query development
+- Learning tool for NoSQL syntax
+- Reduced development time
+
+You have successfully implemented the latest AI-enhanced features in Azure Cosmos DB! These capabilities position your multi-tenant application to leverage modern AI workloads while maintaining the scalability and performance benefits of Cosmos DB.
+
+**Congratulations on completing the enhanced workshop with cutting-edge AI features!**
 
 
 

@@ -1,0 +1,96 @@
+[
+  {
+    "id": "ai-hotel-recommendation-1",
+    "tenantId": 1001,
+    "type": "AIRecommendation",
+    "description": "Luxury oceanfront suite with premium amenities and spa access",
+    "vectorProperty": [0.8, 0.9, 0.7, 0.6, 0.8, 0.9, 0.7, 0.8, 0.6, 0.9, 0.8, 0.7, 0.9, 0.8, 0.6, 0.7],
+    "metadata": {
+      "roomType": "Oceanfront Suite",
+      "amenities": ["spa", "ocean-view", "balcony", "premium-bedding", "mini-bar"],
+      "priceRange": "luxury",
+      "rating": 4.9,
+      "features": ["ai-recommended", "high-demand"]
+    },
+    "recommendations": {
+      "targetCustomers": ["business-travelers", "luxury-seekers", "romantic-getaway"],
+      "similarRooms": ["suite-premium", "oceanview-deluxe"],
+      "aiScore": 0.92
+    }
+  },
+  {
+    "id": "ai-hotel-recommendation-2",
+    "tenantId": 1001,
+    "type": "AIRecommendation",
+    "description": "Modern business suite with high-speed internet and meeting facilities",
+    "vectorProperty": [0.7, 0.8, 0.9, 0.8, 0.7, 0.6, 0.8, 0.9, 0.7, 0.8, 0.6, 0.9, 0.8, 0.7, 0.9, 0.8],
+    "metadata": {
+      "roomType": "Business Suite",
+      "amenities": ["high-speed-wifi", "work-desk", "meeting-room-access", "printer"],
+      "priceRange": "premium",
+      "rating": 4.7,
+      "features": ["business-friendly", "ai-recommended"]
+    },
+    "recommendations": {
+      "targetCustomers": ["business-travelers", "corporate-events", "remote-workers"],
+      "similarRooms": ["executive-room", "conference-suite"],
+      "aiScore": 0.88
+    }
+  },
+  {
+    "id": "ai-sentiment-analysis-1",
+    "tenantId": 1001,
+    "type": "CustomerFeedback",
+    "description": "Excellent service and beautiful ocean views. Perfect for romantic getaway!",
+    "vectorProperty": [0.9, 0.8, 0.9, 0.7, 0.8, 0.9, 0.8, 0.7, 0.9, 0.8, 0.9, 0.8, 0.7, 0.9, 0.8, 0.9],
+    "sentiment": {
+      "score": 0.95,
+      "category": "positive",
+      "emotions": ["joy", "satisfaction", "love"],
+      "keywords": ["excellent", "beautiful", "perfect", "romantic"]
+    },
+    "customer": {
+      "segment": "luxury-travelers",
+      "repeatCustomer": true,
+      "preferredRoomType": "oceanfront"
+    }
+  },
+  {
+    "id": "ai-pricing-optimization-1",
+    "tenantId": 1002,
+    "type": "PricingModel",
+    "description": "Dynamic pricing model for family rooms during peak season",
+    "vectorProperty": [0.6, 0.7, 0.8, 0.6, 0.7, 0.8, 0.9, 0.7, 0.6, 0.8, 0.7, 0.9, 0.8, 0.6, 0.7, 0.8],
+    "pricingFactors": {
+      "seasonality": 0.8,
+      "demand": 0.9,
+      "competition": 0.7,
+      "events": 0.6,
+      "aiOptimizedPrice": 285.50
+    },
+    "recommendations": {
+      "suggestedPrice": 285.50,
+      "confidence": 0.89,
+      "priceRange": [250, 320],
+      "strategy": "premium-positioning"
+    }
+  },
+  {
+    "id": "ai-chatbot-query-1",
+    "tenantId": 1003,
+    "type": "ChatbotInteraction",
+    "description": "Customer inquiry about pet-friendly rooms with mountain views",
+    "vectorProperty": [0.5, 0.6, 0.7, 0.8, 0.6, 0.7, 0.5, 0.8, 0.9, 0.6, 0.7, 0.8, 0.5, 0.9, 0.6, 0.7],
+    "query": {
+      "intent": "room-search",
+      "requirements": ["pet-friendly", "mountain-view", "ground-floor"],
+      "budget": "mid-range",
+      "dates": ["2025-08-15", "2025-08-18"]
+    },
+    "aiResponse": {
+      "recommendedRooms": ["mountain-pet-suite", "ground-floor-deluxe"],
+      "confidence": 0.85,
+      "alternativeOptions": 3
+    }
+  }
+]

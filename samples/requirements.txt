@@ -1,0 +1,25 @@
+# Azure Cosmos DB AI Features Demo - Python Requirements
+# Install with: pip install -r requirements.txt
+
+# Core Azure Cosmos DB SDK
+azure-cosmos>=4.5.0
+
+# For vector operations and data manipulation
+numpy>=1.21.0
+
+# For async operations (if not using Python 3.7+)
+aiohttp>=3.8.0
+
+# Optional: For Azure OpenAI integration (RAG patterns)
+openai>=1.0.0
+azure-identity>=1.13.0
+
+# Optional: For advanced vector operations
+scikit-learn>=1.3.0
+
+# For JSON handling and data processing
+pandas>=1.5.0
+
+# Development and testing
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
